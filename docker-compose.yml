@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres-users-dev:
+    image: postgres:14.1
+    container_name: users-dev-db
+    environment:
+      POSTGRES_USER: devadmin
+      POSTGRES_PASSWORD: devadmin
+      POSTGRES_DB: dev-users
+    ports:
+      - "5432:5432"
+
+  postgres-users-qa:
+    image: postgres:14.1
+    container_name: users-qa-db
+    environment:
+      POSTGRES_USER: qaadmin
+      POSTGRES_PASSWORD: qaadmin
+      POSTGRES_DB: qa-users
+    ports:
+      - "5433:5432"
+
+  postgres-users-staging:
+    image: postgres:14.1
+    container_name: users-staging-db
+    environment:
+      POSTGRES_USER: stadmin
+      POSTGRES_PASSWORD: stadmin
+      POSTGRES_DB: staging-users
+    ports:
+      - "5434:5432"
+
+  postgres-users-prod:
+    image: postgres:14.1
+    container_name: users-prod-db
+    environment:
+      POSTGRES_USER: prodadmin
+      POSTGRES_PASSWORD: prodadmin
+      POSTGRES_DB: prod-users
+    ports:
+      - "5435:5432"

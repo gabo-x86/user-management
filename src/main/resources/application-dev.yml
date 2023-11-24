@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: user-management
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dev-users
+    username: devadmin
+    password: devadmin
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    locations: classpath:db/migration,classpath:dev/db/migration
+
+security-cred:
+  user: devuser
+  password: devpass123
