@@ -18,4 +18,6 @@ public interface UserService {
     public Optional<UserDetailDTO> getUserById(Integer id);
 
     public List<UserDetailDTO> listUsersByRol(String rol);
+
+    public UserDetailDTO edit(UserDetailDTO user);
 }

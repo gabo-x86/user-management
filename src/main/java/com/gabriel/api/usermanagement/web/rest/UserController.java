@@ -77,7 +77,7 @@ public class UserController {
 
         return ResponseEntity
                 .ok()
-                .body(this.userService.save(dto));
+                .body(this.userService.edit(dto));
     }
 
     @GetMapping("/by-role")

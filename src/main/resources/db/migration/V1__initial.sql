@@ -39,6 +39,6 @@ create table user_detail(
                             "age" integer,
                             birth_day date,
                             user_id bigint unique,	--FK
-                            constraint fk_user_detail foreign key(user_id) references "user"(id) on delete restrict
+                            constraint fk_user_detail foreign key(user_id) references "user"(id) on delete cascade
 );
 create sequence user_detail_sequence as integer increment 1;

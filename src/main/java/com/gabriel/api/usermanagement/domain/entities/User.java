@@ -85,4 +85,25 @@ public class User  {
     public void setUserDetail(UserDetail userDetail) {
         this.userDetail = userDetail;
     }
+
+    public Set<UserRol> getAssignations() {
+        return assignations;
+    }
+
+    public void setAssignations(Set<UserRol> assignations) {
+        this.assignations = assignations;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", createdAt=" + createdAt +
+                ", userDetail=" + userDetail +
+                ", assignations=" + assignations +
+                '}';
+    }
 }

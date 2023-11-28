@@ -101,4 +101,39 @@ public class UserServiceImpl implements UserService {
                 .map(this.userMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public UserDetailDTO edit(UserDetailDTO dto) {
+        User prevUser = this.userRepository.findById((Integer) dto.getId()).get();
+        User user = this.userMapper.toEntity(dto);
+        if(prevUser.getCreatedAt() != null) user.setCreatedAt(prevUser.getCreatedAt());
+        if(prevUser.getUserDetail() != null) user.setUserDetail(prevUser.getUserDetail());
+        if(prevUser.getAssignations() != null) user.setAssignations(prevUser.getAssignations());
+
+        User userEdited = this.userRepository.save(user);
+
+
+        if(dto.getFirstName() != null && dto.getLastName() != null){
+            UserDetail userDetail = new UserDetail();
+            if(dto.getAge() != null) userDetail.setAge(dto.getAge());
+            if(dto.getBirthDay() != null){
+                userDetail.setBirthDay(
+                        LocalDate.parse(
+                                dto.getBirthDay(),
+                                DateTimeFormatter.ofPattern("MM-dd-yyyy")
+                        )
+                );
+            }
+            if(user.getUserDetail() != null){
+                userDetail.setId(user.getUserDetail().getId());
+            }
+            userDetail.setFirstName(dto.getFirstName());
+            userDetail.setLastName(dto.getLastName());
+            userDetail.setUser(user);
+            this.userDetailRepository.save(userDetail);
+        }
+
+        dto.setId(user.getId());
+        return dto;
+    }
 }
